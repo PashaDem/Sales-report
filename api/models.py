@@ -17,6 +17,9 @@ class Product(models.Model):
     )
     description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name + f"with the cost {self.cost}"
+
 
 class SalePoint(models.Model):
     """
@@ -42,7 +45,7 @@ class SalePoint(models.Model):
         pass
 
     def __str__(self):
-        pass
+        return f"Sale point with the address: {self.address}"
 
 
 class Purchase(models.Model):
@@ -75,4 +78,7 @@ class SalePointAdministrator(models.Model):
     is_main_administrator = models.BooleanField(default=False)
 
     def __str__(self):
-        pass
+        return (
+            self.full_name
+            + f"{'is' if self.is_main_administrator else 'is not'} the main administrator"
+        )
