@@ -17,6 +17,11 @@ class Product(models.Model):
     )
     description = models.CharField(max_length=100)
 
+    # View is responsible for initialization of this field
+    sold_count = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0)], default=0
+    )
+
     def __str__(self):
         return self.name + f"with the cost {self.cost}"
 
@@ -34,12 +39,16 @@ class SalePoint(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE
     )  # to identify the shop through the user
+    total_sum = models.DecimalField(default=0, max_digits=8, decimal_places=2)
 
     def get_absolute_url(self):
         pass
 
-    def calculate_purchases_sum(self, **kwargs):
-        pass
+    def calculate_purchases_sum(self):
+        self.total_sum = sum(
+            purchase.product.cost * purchase.count for purchase in self.purchases.all()
+        )
+        return self.total_sum
 
     def get_administrators(self):
         pass
@@ -56,12 +65,12 @@ class Purchase(models.Model):
     sale_point = models.ForeignKey(
         "SalePoint", on_delete=models.CASCADE, related_name="purchases"
     )
-    product = models.OneToOneField("Product", on_delete=models.CASCADE)
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
     count = models.PositiveSmallIntegerField()
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        pass
+        return f"Product {self.product.name} in count of {self.count} was bought"
 
     def calculate_total(self):
         return self.count * self.product.cost
