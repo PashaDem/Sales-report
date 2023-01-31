@@ -7,7 +7,6 @@ from api.views import (
     BestSoldProductsView,
 )
 
-
 urlpatterns = [
     path("products/", ProductListView.as_view(), name="product_list"),
     path("sale_points/", SalePointListView.as_view()),

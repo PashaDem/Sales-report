@@ -65,7 +65,7 @@ class BestSoldProductsView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Product.objects.order_by("-sold_count")
+        return Product.objects.order_by("-sold_count")[:11]
 
 
 @api_view(["POST"])
@@ -75,13 +75,10 @@ def add_purchase_view(request):
     third requirement implementation
     """
     serializer = PurchaseAddingSerializer(data=request.data)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(request.data)
     if serializer.is_valid():
         product_id = serializer.validated_data["product_id"]
         sale_point_id = serializer.validated_data["sale_point_id"]
         count = serializer.validated_data["count"]
-        print(type(product_id))
         try:
             product = Product.objects.get(id=product_id)
             sale_point = SalePoint.objects.get(id=sale_point_id)

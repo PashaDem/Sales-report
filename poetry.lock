@@ -51,6 +51,18 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-async-orm"
+version = "0.1.11"
+description = "Bringing async capabilities to django ORM"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "django-async-orm-0.1.11.tar.gz", hash = "sha256:535884840e0c726d37a54fd0f7a55137591c596477e5f5e2421ab384cd30ac53"},
+    {file = "django_async_orm-0.1.11-py3-none-any.whl", hash = "sha256:96bdf89600f2f371c32dd5e67b4d5b1bd5ba0f7721425b1c358ad8ab67143ac0"},
+]
+
+[[package]]
 name = "django-debug-toolbar"
 version = "3.8.1"
 description = "A configurable set of panels that display various debug information about the current request/response."
@@ -121,4 +133,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "596b579f3beef44cc48f9fc92a28da060455187a8b260658adf9e15d1c01f5be"
+content-hash = "18732526f30f2480b6a5db26e8dd458273a1b31a8b32604442fb14f82bc5e66e"
