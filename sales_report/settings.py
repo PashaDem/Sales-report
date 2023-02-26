@@ -19,6 +19,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "debug_toolbar",
     "django_async_orm",
+    "drf_yasg",
 ]
 
 INSTALLED_APPS = [

@@ -13,6 +13,7 @@ djangorestframework = "^3.14.0"
 django-debug-toolbar = "^3.8.1"
 asyncio = "^3.4.3"
 django-async-orm = "^0.1.11"
+drf-yasg = "^1.21.5"
 
 
 [build-system]
